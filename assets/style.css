@@ -1,0 +1,23 @@
+* {
+
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+}
+
+#searchBox {
+    
+    display: flex;
+    flex-direction: column;
+}
+.form-label {
+    font-size: 1.25rem;
+    padding-bottom: 10px;
+}
+
+#searchBar {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
