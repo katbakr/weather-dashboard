@@ -9,10 +9,26 @@
 // THEN I am again presented with current and future conditions for that city
 
 var apiKey = "0a7fc131500231612fc6db5c5667faa8"
-
+var pastSearches= [];
 var searchFormEl = document.getElementById(searchForm);
 var citySearchEL = document.getElementById(citySearch);
 var cityDetailEl = document.getElementById(cityDetail);
 var forecastEl = document.getElementById(forecast);
 var fiveDayContEl = document.getElementById(fiveDayContainer);
 var searchHistoryBtnsEl = document.getElementById(searchHistoryBtns);
+
+var formHandler = function(event) {
+    event.preventDefault(); 
+    var userChoice = citySearchEL.ariaValueMax.trim();
+    if(userChoice) {
+        //call function to get weather 
+        //call function for 5 day forecast
+        pastSearches.unshift({userChoice})
+        citySearchEL.value = "";
+    } else {
+        console.log(userChoice)
+        //prompt pick city
+    }
+    //local storage to save search
+    //add to past search list
+}
