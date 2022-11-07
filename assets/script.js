@@ -8,7 +8,7 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
-var apiKey = "0a7fc131500231612fc6db5c5667faa8"
+
 var pastSearches= [];
 var searchFormEl = document.getElementById(searchForm);
 var citySearchEL = document.getElementById(citySearch);
@@ -30,5 +30,25 @@ var formHandler = function(event) {
         //prompt pick city
     }
     //local storage to save search
+    storeSearch();
     //add to past search list
-}
+};
+
+function storeSearch() {
+    localStorage.setItem("cities", JSON.stringify(pastSearches))
+};
+
+var cityForecast = function(userChoice) {
+    var apiKey = "0a7fc131500231612fc6db5c5667faa8"
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=${userChoice}&units=imperial&appid=${apiKey}"
+
+    fetch(apiURL)
+    .then(function(response) {
+        response.json().then(function(data){
+            //call function for city detail
+            addDetail(data, userChoice)
+        })
+    })
+};
+
+var addDetail = function(){};
