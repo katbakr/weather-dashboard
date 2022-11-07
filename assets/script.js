@@ -10,20 +10,24 @@
 
 
 var pastSearches= [];
-var searchFormEl = document.getElementById(searchForm);
-var citySearchEL = document.getElementById(citySearch);
-var cityDetailEl = document.getElementById(cityDetail);
-var forecastEl = document.getElementById(forecast);
-var fiveDayContEl = document.getElementById(fiveDayContainer);
-var searchHistoryBtnsEl = document.getElementById(searchHistoryBtns);
+var searchFormEl = document.getElementById("searchForm");
+var searchBtnEl = document.getElementById("searchBtn")
+var citySearchEL = document.getElementById("citySearch");
+var cityDetailEl = document.getElementById("cityDetail");
+var forecastEl = document.getElementById("forecast");
+var fiveDayContEl = document.getElementById("fiveDayContainer");
+var searchHistoryBtnsEl = document.getElementById("searchHistoryBtns");
 
 var formHandler = function(event) {
     event.preventDefault(); 
-    var userChoice = citySearchEL.ariaValueMax.trim();
+    var userChoice = citySearchEL.value.trim();
     if(userChoice) {
-        //call function to get weather 
+        //call function to get weather
+        addDetail(userChoice);
         //call function for 5 day forecast
-        pastSearches.unshift({userChoice})
+
+
+        pastSearches.unshift({userChoice});
         citySearchEL.value = "";
     } else {
         console.log(userChoice)
@@ -46,9 +50,28 @@ var cityForecast = function(userChoice) {
     .then(function(response) {
         response.json().then(function(data){
             //call function for city detail
-            addDetail(data, userChoice)
+            addDetail(data, userChoice);
         })
     })
 };
 
-var addDetail = function(){};
+var addDetail = function(weather, searchCity){
+
+    cityDetailEl.textContent= "";
+    citySearchEL.textContent=searchCity;
+
+console.log(weather);
+
+//Display date in new element
+var todayDate = document.createElement("span");
+todayDate.textContent=" (" + moment().format("MMM D, YYYY") + ") ";
+citySearchEL.appendChild(todayDate);
+
+
+
+};
+
+
+
+
+searchFormEl.addEventListener("click", formHandler);
