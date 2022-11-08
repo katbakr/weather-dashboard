@@ -17,31 +17,7 @@ var forecastEl = document.getElementById("forecast");
 var fiveDayContEl = document.getElementById("fiveDayContainer");
 var searchHistoryBtnsEl = document.getElementById("searchHistoryBtns");
 
-var formHandler = function (event) {
-  event.preventDefault();
-  var userChoice = citySearchEL.value.trim();
-  if (userChoice) {
-    //call function to get weather
-    addDetail(userChoice);
-    //call function for 5 day forecast
-
-    pastSearches.unshift({ userChoice });
-    citySearchEL.value = "";
-  } else {
-    console.log(userChoice);
-    //prompt pick city
-  }
-  //local storage to save search
-  storeSearch();
-  //add to past search list
-};
-
-function storeSearch() {
-  localStorage.setItem("cities", JSON.stringify(pastSearches));
-}
-
-var cityForecast = function (userChoice) {
-  var apiKey = "0a7fc131500231612fc6db5c5667faa8";
+var apiKey = "0a7fc131500231612fc6db5c5667faa8";
   var apiURL =
     "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={0a7fc131500231612fc6db5c5667faa8}";
 
@@ -55,7 +31,46 @@ var cityForecast = function (userChoice) {
       //call function for city detail
       addDetail(data, userChoice);
     });
-};
+
+// var formHandler = function (event) {
+//   event.preventDefault();
+//   var userChoice = citySearchEL.value.trim();
+//   if (userChoice) {
+//     //call function to get weather
+//     addDetail(userChoice);
+//     //call function for 5 day forecast
+
+//     pastSearches.unshift({ userChoice });
+//     citySearchEL.value = "";
+//   } else {
+//     console.log(userChoice);
+//     //prompt pick city
+//   }
+//   //local storage to save search
+//   storeSearch();
+//   //add to past search list
+// };
+
+// function storeSearch() {
+//   localStorage.setItem("cities", JSON.stringify(pastSearches));
+// }
+
+// var cityForecast = function (userChoice) {
+//   var apiKey = "0a7fc131500231612fc6db5c5667faa8";
+//   var apiURL =
+//     "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={0a7fc131500231612fc6db5c5667faa8}";
+
+//   fetch(apiURL)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//         console.log(response)
+//         console.log(data)
+//       //call function for city detail
+//       addDetail(data, userChoice);
+//     });
+// };
 
 // var addDetail = function (weather, searchCity) {
 //   cityDetailEl.textContent = "";
