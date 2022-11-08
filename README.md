@@ -12,7 +12,7 @@ Using this application is very easy. Simply type in a city of your choice into t
 
 ![alt text](./assets/images/06-server-side-apis-homework-demo.png)
 
-[Deployed] (link)
+[Deployed] (https://katbakr.github.io/weather-dashboard/)
 
 ## License
 
